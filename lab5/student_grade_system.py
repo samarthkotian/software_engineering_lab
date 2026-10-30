@@ -40,7 +40,8 @@ def check_passing_status(student_id, pass_threshold=50.0):
     student = gradebook.get(student_id)
     if student is None or not student["marks"]:
         return False
-    avg = sum(gradebook[student_id]["marks"]) / len(gradebook[student_id]["marks"])
+    marks = student["marks"]
+    avg = sum(marks) / len(marks)
     return avg >= pass_threshold
 
 

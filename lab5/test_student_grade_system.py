@@ -76,11 +76,13 @@ class GradeSystemTests(unittest.TestCase):
 
     def test_pin_uses_secrets_and_preserves_four_digit_bounds(self):
         for offset, expected in [(0, 1000), (8999, 9999)]:
-            with patch.object(grades.secrets, "randbelow", return_value=offset):
+            with patch.object(grades.secrets, "randbelow",
+                              return_value=offset):
                 self.assertEqual(grades.generate_registration_pin(), expected)
 
     def test_export_treats_shell_characters_as_filename_text(self):
-        with tempfile.TemporaryDirectory(dir=Path(__file__).resolve().parent) as directory:
+        parent = Path(__file__).resolve().parent
+        with tempfile.TemporaryDirectory(dir=parent) as directory:
             target = Path(directory) / "grades & echo.txt"
             with redirect_stdout(io.StringIO()):
                 grades.export_grade_sheet(target)
@@ -90,7 +92,8 @@ class GradeSystemTests(unittest.TestCase):
 
     def test_main_never_prints_the_environment_token(self):
         output = io.StringIO()
-        with tempfile.TemporaryDirectory(dir=Path(__file__).resolve().parent) as directory:
+        parent = Path(__file__).resolve().parent
+        with tempfile.TemporaryDirectory(dir=parent) as directory:
             target = Path(directory) / "grades.txt"
             real_export = grades.export_grade_sheet
             with patch.dict(grades.os.environ, {"GRADE_PORTAL_TOKEN": "demo"}):
