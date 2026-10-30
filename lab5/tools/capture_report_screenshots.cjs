@@ -10,6 +10,7 @@ const escape = value => value.replaceAll('&', '&amp;')
 (async () => {
   const browser = await chromium.launch({
     headless: true,
+    args: ['--disable-lcd-text'],
     executablePath: process.env.LAB5_BROWSER_EXE || undefined,
   });
   try {
@@ -35,20 +36,21 @@ const escape = value => value.replaceAll('&', '&amp;')
         const html = `<!doctype html><html><head><meta charset="utf-8">
           <title>${tool} ${stage} - saved analysis report</title>
           <style>
-          *{box-sizing:border-box}body{margin:0;padding:30px;background:#eef2f6;
-          color:#152a40;font-family:Arial,sans-serif}main{background:#fff;
-          padding:28px;border:1px solid #cad6e1;border-radius:10px}
+          *{box-sizing:border-box}body{margin:0;padding:30px;background:#fff;
+          color:#000;font-family:Arial,sans-serif}main{background:#fff;
+          padding:28px;border:1px solid #000}
           h1{margin:0 0 10px;font-size:26px}header{display:flex;
           justify-content:space-between;align-items:center}
-          .badge{padding:7px 12px;background:${stage === 'after' ? '#d9f3e8' : '#fff0d3'};
-          border-radius:15px;font-size:14px}p{font-size:14px;color:#465e73}
-          .command{background:#142a40;color:#fff;padding:12px 16px;
-          font:15px Consolas,monospace;border-radius:5px}
+          .badge{padding:7px 12px;background:#fff;border:1px solid #000;
+          font-size:14px}p{font-size:14px;color:#000}
+          .command{background:#fff;color:#000;padding:12px 16px;
+          font:15px Consolas,monospace;border:1px solid #000}
           pre{font:15px/1.5 Consolas,'Courier New',monospace;margin:18px 0 0;
-          white-space:pre-wrap;overflow-wrap:anywhere;color:#142a40}
-          .empty{margin:20px 0 0;padding:18px;background:#eaf7f1;
-          font-size:17px;color:#165b43}footer{font-size:12px;color:#526c81;
-          margin-top:18px;border-top:1px solid #d5dee7;padding-top:12px}
+          white-space:pre-wrap;overflow-wrap:anywhere;color:#000}
+          .empty{margin:20px 0 0;padding:18px;background:#fff;
+          border:1px solid #000;font-size:17px;color:#000}
+          footer{font-size:12px;color:#000;
+          margin-top:18px;border-top:1px solid #000;padding-top:12px}
           </style></head><body><main><header><h1>${tool.toUpperCase()} | ${stage.toUpperCase()}</h1>
           <span class="badge">Recorded exit code: ${metadata[tool].exit_code}</span></header>
           <p>${note}</p><div class="command">python -m ${escape(tool + ' ' + args)}</div>

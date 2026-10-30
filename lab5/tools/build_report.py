@@ -18,31 +18,28 @@ from reportlab.platypus import (
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "output/pdf/Lab5_PES1UG24CS406_Static_Code_Analysis.pdf"
-NAVY = colors.HexColor("#142D45")
-TEAL = colors.HexColor("#12796F")
-GRAY = colors.HexColor("#526578")
-PALE = colors.HexColor("#EFF4F8")
+INK = colors.black
 WIDTH = A4[0] - 88
 styles = getSampleStyleSheet()
-styles.add(ParagraphStyle("TitleLab", fontName="Helvetica-Bold", fontSize=29,
-                          leading=34, textColor=NAVY, spaceAfter=14))
+styles.add(ParagraphStyle("TitleLab", fontName="Helvetica-Bold", fontSize=20,
+                          leading=25, textColor=INK, spaceAfter=10))
 styles.add(ParagraphStyle("Kicker", fontName="Helvetica-Bold", fontSize=10,
-                          leading=15, textColor=TEAL, spaceAfter=14))
-styles.add(ParagraphStyle("H1Lab", fontName="Helvetica-Bold", fontSize=19,
-                          leading=24, textColor=NAVY, spaceAfter=13))
+                          leading=14, textColor=INK, spaceAfter=8))
+styles.add(ParagraphStyle("H1Lab", fontName="Helvetica-Bold", fontSize=14,
+                          leading=18, textColor=INK, spaceAfter=10))
 styles.add(ParagraphStyle("H2Lab", fontName="Helvetica-Bold", fontSize=11,
-                          leading=15, textColor=TEAL, spaceBefore=10,
+                          leading=15, textColor=INK, spaceBefore=10,
                           spaceAfter=6))
 styles.add(ParagraphStyle("BodyLab", fontName="Helvetica", fontSize=10,
-                          leading=14.2, textColor=NAVY, spaceAfter=9))
+                          leading=14.2, textColor=INK, spaceAfter=9))
 styles.add(ParagraphStyle("SmallLab", parent=styles["BodyLab"], fontSize=8.5,
-                          leading=11.5, textColor=GRAY, spaceAfter=6))
+                          leading=11.5, textColor=INK, spaceAfter=6))
 styles.add(ParagraphStyle("CellLab", parent=styles["BodyLab"], fontSize=7.9,
                           leading=10.4, spaceAfter=0))
 styles.add(ParagraphStyle("CellHeadLab", parent=styles["CellLab"],
-                          fontName="Helvetica-Bold", textColor=colors.white))
+                          fontName="Helvetica-Bold", textColor=INK))
 styles.add(ParagraphStyle("CodeLab", fontName="Courier", fontSize=7.1,
-                          leading=9.3, textColor=NAVY, spaceAfter=6))
+                          leading=9.3, textColor=INK, spaceAfter=6))
 styles.add(ParagraphStyle("CaptionLab", parent=styles["SmallLab"],
                           fontSize=8, leading=11, alignment=TA_CENTER))
 story = []
@@ -67,15 +64,12 @@ def table(headers, rows, widths):
     cells += [[p(text, "CellLab") for text in row] for row in rows]
     result = Table(cells, colWidths=widths, repeatRows=1, hAlign="LEFT")
     result.setStyle(TableStyle([
-        ("BACKGROUND", (0, 0), (-1, 0), NAVY),
-        ("ROWBACKGROUNDS", (0, 1), (-1, -1), [colors.white, PALE]),
+        ("GRID", (0, 0), (-1, -1), 0.4, INK),
         ("VALIGN", (0, 0), (-1, -1), "TOP"),
         ("LEFTPADDING", (0, 0), (-1, -1), 7),
         ("RIGHTPADDING", (0, 0), (-1, -1), 7),
         ("TOPPADDING", (0, 0), (-1, -1), 8),
         ("BOTTOMPADDING", (0, 0), (-1, -1), 8),
-        ("LINEBELOW", (0, 0), (-1, 0), 0.5, NAVY),
-        ("LINEBELOW", (0, 1), (-1, -1), 0.3, colors.HexColor("#D3DFE8")),
     ]))
     return result
 
@@ -114,13 +108,11 @@ def footer(canvas, document):
     canvas.saveState()
     if document.page > 1:
         canvas.setFont("Helvetica", 7)
-        canvas.setFillColor(GRAY)
+        canvas.setFillColor(INK)
         canvas.drawString(44, A4[1] - 23,
-                          "STATIC CODE ANALYSIS / CONSOLIDATED EVIDENCE")
-    canvas.setStrokeColor(colors.HexColor("#D3DFE8"))
-    canvas.line(44, 40, A4[0] - 44, 40)
+                          "Lab 5 - Static Code Analysis")
     canvas.setFont("Helvetica", 8)
-    canvas.setFillColor(GRAY)
+    canvas.setFillColor(INK)
     canvas.drawString(44, 27, "PES1UG24CS406  |  Software Engineering  |  Lab 5")
     canvas.drawRightString(A4[0] - 44, 27, str(document.page))
     canvas.restoreState()
@@ -220,7 +212,7 @@ story.append(p("All checks were rerun on the final corrected file.", "SmallLab")
 screenshot("pylint_after.png", 245)
 story.append(p("Figure 4. Pylint after: 10.00/10; exit code 0.", "CaptionLab"))
 screenshot("flake8_after.png", 220)
-story.append(p("Figure 5. Flake8 after: no output; exit code 0. The green status "
+story.append(p("Figure 5. Flake8 after: no output; exit code 0. The status "
                "message belongs to the report view; the raw file is empty.", "CaptionLab"))
 story.append(p("Flake8 success is silent. The PDF explicitly represents the "
                "zero-byte after report without inventing analyzer output."))
