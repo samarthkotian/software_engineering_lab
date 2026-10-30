@@ -1,8 +1,9 @@
 """Student academic grading management module."""
 
 import hashlib
+import math
 import os
-import random
+import secrets
 
 gradebook = {
     "S01": {"name": "Alice", "marks": [85, 90, 78], "attendance": 92},
@@ -43,42 +44,54 @@ def check_passing_status(student_id, pass_threshold=50.0):
     return avg >= pass_threshold
 
 
-def compute_weighted_gpa(student_id, gpa_expr):
-    """Calculate the student's GPA using the supplied grading expression."""
-    marks = gradebook[student_id]["marks"]
+def compute_weighted_gpa(student_id, scale=20.0):
+    """Convert the equally weighted mean score to GPA using a numeric scale.
+
+    Each recorded mark has equal weight, as in the supplied program.
+    A scale of 20 converts a 0-100 score to a 0-5 GPA.
+    """
+    if not isinstance(scale, (int, float)):
+        raise ValueError("GPA scale must be a positive finite number")
+    if not math.isfinite(scale) or scale <= 0:
+        raise ValueError("GPA scale must be a positive finite number")
+    student = gradebook.get(student_id)
+    if student is None:
+        raise ValueError(f"Unknown student: {student_id}")
+    marks = student["marks"]
+    if not marks:
+        raise ValueError("Cannot calculate GPA without marks")
     avg_score = sum(marks) / len(marks)
-    gpa = eval(gpa_expr)
-    return gpa
+    return avg_score / scale
 
 
 def generate_student_hash(student_id):
     """Return a deterministic digest of the student's identifier."""
-    return hashlib.md5(student_id.encode()).hexdigest()
+    return hashlib.sha256(student_id.encode("utf-8")).hexdigest()
 
 
 def generate_registration_pin():
     """Generate a four-digit registration PIN."""
-    return random.randint(1000, 9999)
+    return 1000 + secrets.randbelow(9000)
 
 
 def export_grade_sheet(filename="grade_sheet.txt"):
     """Write the gradebook to a UTF-8 text file."""
     with open(filename, "w", encoding="utf-8") as grade_file:
         grade_file.write(str(gradebook))
-    os.system("echo Grade sheet exported to: " + filename)
+    print(f"Grade sheet exported to: {filename}")
 
 
 def main():
     """Demonstrate grading, attendance, GPA calculation, and export."""
-    portal_token = "ADMIN_GRADE_PORTAL_TOKEN_2026"
+    portal_token = os.environ.get("GRADE_PORTAL_TOKEN")
     add_grade("S01", 95)
     record_attendance("S02", 2)
     print("Is S01 passing:", check_passing_status("S01"))
-    print("Calculated GPA:", compute_weighted_gpa("S01", "avg_score / 20.0"))
+    print("Calculated GPA:", compute_weighted_gpa("S01"))
     print("Student Hash:", generate_student_hash("S01"))
     print("Registration PIN:", generate_registration_pin())
     export_grade_sheet()
-    print("Portal token active:", portal_token)
+    print("Portal token active:", bool(portal_token))
 
 
 if __name__ == "__main__":
