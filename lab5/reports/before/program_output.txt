@@ -1,0 +1,6 @@
+Grade sheet exported to: grade_sheet.txt
+Is S01 passing: True
+Calculated GPA: 4.35
+Student Hash: 4cfe35d8825ba802868fabe687dc860d
+Registration PIN: 7506
+Portal token active: ADMIN_GRADE_PORTAL_TOKEN_2026
