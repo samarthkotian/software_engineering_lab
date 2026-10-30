@@ -1,0 +1,34 @@
+{
+  "program": {
+    "command": [
+      "student_grade_system.py"
+    ],
+    "exit_code": 0
+  },
+  "pylint": {
+    "command": [
+      "-m",
+      "pylint",
+      "--persistent=n",
+      "student_grade_system.py"
+    ],
+    "exit_code": 0
+  },
+  "bandit": {
+    "command": [
+      "-m",
+      "bandit",
+      "-r",
+      "student_grade_system.py"
+    ],
+    "exit_code": 0
+  },
+  "flake8": {
+    "command": [
+      "-m",
+      "flake8",
+      "student_grade_system.py"
+    ],
+    "exit_code": 0
+  }
+}

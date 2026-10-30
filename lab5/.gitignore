@@ -1,0 +1,8 @@
+.venv/
+venv/
+__pycache__/
+*.pyc
+grade_sheet.txt
+tools/report_views/
+tools/browser_temp/
+output/qa/

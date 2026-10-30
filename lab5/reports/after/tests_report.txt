@@ -1,0 +1,15 @@
+test_attendance_rejects_unknown_and_out_of_range_updates (test_student_grade_system.GradeSystemTests.test_attendance_rejects_unknown_and_out_of_range_updates) ... ok
+test_export_treats_shell_characters_as_filename_text (test_student_grade_system.GradeSystemTests.test_export_treats_shell_characters_as_filename_text) ... ok
+test_gpa_preserves_the_demo_and_accepts_numeric_scaling (test_student_grade_system.GradeSystemTests.test_gpa_preserves_the_demo_and_accepts_numeric_scaling) ... ok
+test_gpa_rejects_code_strings_invalid_scales_and_missing_marks (test_student_grade_system.GradeSystemTests.test_gpa_rejects_code_strings_invalid_scales_and_missing_marks) ... ok
+test_hash_is_sha256 (test_student_grade_system.GradeSystemTests.test_hash_is_sha256) ... ok
+test_import_has_no_output_or_export_side_effect (test_student_grade_system.GradeSystemTests.test_import_has_no_output_or_export_side_effect) ... ok
+test_main_never_prints_the_environment_token (test_student_grade_system.GradeSystemTests.test_main_never_prints_the_environment_token) ... ok
+test_passing_boundary_and_missing_marks (test_student_grade_system.GradeSystemTests.test_passing_boundary_and_missing_marks) ... ok
+test_pin_uses_secrets_and_preserves_four_digit_bounds (test_student_grade_system.GradeSystemTests.test_pin_uses_secrets_and_preserves_four_digit_bounds) ... ok
+test_score_validation_and_independent_audit_logs (test_student_grade_system.GradeSystemTests.test_score_validation_and_independent_audit_logs) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.024s
+
+OK
