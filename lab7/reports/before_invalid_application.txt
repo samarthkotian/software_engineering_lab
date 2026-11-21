@@ -1,0 +1,15 @@
+$ python salon_booking.py
+Inputs (one per prompt): '\n'
+==== Running parse_booking ====
+Enter service:duration in min (e.g. haircut:45): Traceback (most recent call last):
+  File "C:\Users\samar\OneDrive\Desktop\pes\pessem5\software engineering\lab\L6_L7_42_salon_booking\Lab 7\salon_booking.py", line 31, in <module>
+    main()
+  File "C:\Users\samar\OneDrive\Desktop\pes\pessem5\software engineering\lab\L6_L7_42_salon_booking\Lab 7\salon_booking.py", line 17, in main
+    result = parse_booking(user_input)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\samar\OneDrive\Desktop\pes\pessem5\software engineering\lab\L6_L7_42_salon_booking\Lab 7\salon_booking.py", line 2, in parse_booking
+    service, minutes = text.split(':')
+    ^^^^^^^^^^^^^^^^
+ValueError: not enough values to unpack (expected 2, got 1)
+
+Exit code: 1

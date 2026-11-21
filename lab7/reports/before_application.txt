@@ -1,0 +1,12 @@
+$ python salon_booking.py
+Inputs (one per prompt): 'haircut:45\n30,45,60\n800|100\n'
+==== Running parse_booking ====
+Enter service:duration in min (e.g. haircut:45): Service and Duration: ('Haircut', 45.0)
+
+==== Running duration_average ====
+Enter durations as CSV (e.g. 30,45,60): Average Duration: 45
+
+==== Running payable_bill ====
+Enter bill|discount (e.g. 800|100): Payable Bill: 844.0
+
+Exit code: 0

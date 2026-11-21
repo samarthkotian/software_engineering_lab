@@ -1,0 +1,432 @@
+$ python -m pytest test_processor.py -v --tb=short
+============================= test session starts =============================
+platform win32 -- Python 3.12.14, pytest-9.2.0, pluggy-1.7.0 -- C:\Users\samar\OneDrive\Desktop\pes\pessem5\software engineering\lab\.venv-lab67\Scripts\python.exe
+cachedir: .pytest_cache
+hypothesis profile 'default'
+rootdir: C:\Users\samar\OneDrive\Desktop\pes\pessem5\software engineering\lab\L6_L7_42_salon_booking\Lab 7
+plugins: hypothesis-6.170.17
+collecting ... collected 42 items
+
+test_processor.py::test_parse_booking_no_crash FAILED                    [  2%]
+test_processor.py::test_duration_average_no_crash FAILED                 [  4%]
+test_processor.py::test_payable_bill_no_crash FAILED                     [  7%]
+test_processor.py::test_valid_booking PASSED                             [  9%]
+test_processor.py::test_average_matches_integer_mean PASSED              [ 11%]
+test_processor.py::test_bill_matches_formula PASSED                      [ 14%]
+test_processor.py::test_invalid_bookings[None] FAILED                    [ 16%]
+test_processor.py::test_invalid_bookings[] FAILED                        [ 19%]
+test_processor.py::test_invalid_bookings[haircut] FAILED                 [ 21%]
+test_processor.py::test_invalid_bookings[haircut:1:2] FAILED             [ 23%]
+test_processor.py::test_invalid_bookings[unknown:3] FAILED               [ 26%]
+test_processor.py::test_invalid_bookings[haircut:-1] FAILED              [ 28%]
+test_processor.py::test_invalid_bookings[haircut:nan] FAILED             [ 30%]
+test_processor.py::test_invalid_bookings[spa:inf] FAILED                 [ 33%]
+test_processor.py::test_invalid_bookings[value8] FAILED                  [ 35%]
+test_processor.py::test_invalid_bookings[True] FAILED                    [ 38%]
+test_processor.py::test_invalid_bookings[value10] FAILED                 [ 40%]
+test_processor.py::test_invalid_averages[None] FAILED                    [ 42%]
+test_processor.py::test_invalid_averages[] FAILED                        [ 45%]
+test_processor.py::test_invalid_averages[1,,3] FAILED                    [ 47%]
+test_processor.py::test_invalid_averages[1,] FAILED                      [ 50%]
+test_processor.py::test_invalid_averages[-1,2] FAILED                    [ 52%]
+test_processor.py::test_invalid_averages[1.5,2] FAILED                   [ 54%]
+test_processor.py::test_invalid_averages[nan] FAILED                     [ 57%]
+test_processor.py::test_invalid_averages[inf] FAILED                     [ 59%]
+test_processor.py::test_invalid_averages[x] FAILED                       [ 61%]
+test_processor.py::test_invalid_averages[value9] FAILED                  [ 64%]
+test_processor.py::test_invalid_averages[False] FAILED                   [ 66%]
+test_processor.py::test_invalid_averages[value11] FAILED                 [ 69%]
+test_processor.py::test_invalid_bills[None] FAILED                       [ 71%]
+test_processor.py::test_invalid_bills[] FAILED                           [ 73%]
+test_processor.py::test_invalid_bills[1] FAILED                          [ 76%]
+test_processor.py::test_invalid_bills[1|2|3] FAILED                      [ 78%]
+test_processor.py::test_invalid_bills[-1|0] FAILED                       [ 80%]
+test_processor.py::test_invalid_bills[1|-1] FAILED                       [ 83%]
+test_processor.py::test_invalid_bills[nan|0] FAILED                      [ 85%]
+test_processor.py::test_invalid_bills[inf|0] FAILED                      [ 88%]
+test_processor.py::test_invalid_bills[0|nan] FAILED                      [ 90%]
+test_processor.py::test_invalid_bills[value9] FAILED                     [ 92%]
+test_processor.py::test_invalid_bills[True] FAILED                       [ 95%]
+test_processor.py::test_invalid_bills[1.7e308|0] FAILED                  [ 97%]
+test_processor.py::test_documented_examples PASSED                       [100%]
+
+================================== FAILURES ===================================
+_________________________ test_parse_booking_no_crash _________________________
+  + Exception Group Traceback (most recent call last):
+  |   File "C:\Users\samar\OneDrive\Desktop\pes\pessem5\software engineering\lab\L6_L7_42_salon_booking\Lab 7\test_processor.py", line 18, in test_parse_booking_no_crash
+  |     def test_parse_booking_no_crash(value):
+  |                    ^^^
+  | ExceptionGroup: Hypothesis found 2 distinct failures. (2 sub-exceptions)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "C:\Users\samar\OneDrive\Desktop\pes\pessem5\software engineering\lab\L6_L7_42_salon_booking\Lab 7\test_processor.py", line 19, in test_parse_booking_no_crash
+    |     result = parse_booking(value)
+    |              ^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\samar\OneDrive\Desktop\pes\pessem5\software engineering\lab\L6_L7_42_salon_booking\Lab 7\salon_booking.py", line 2, in parse_booking
+    |     service, minutes = text.split(':')
+    |     ^^^^^^^^^^^^^^^^
+    | ValueError: not enough values to unpack (expected 2, got 1)
+    | Failing test case: test_parse_booking_no_crash(
+    |     value='',
+    | )
+    +---------------- 2 ----------------
+    | Traceback (most recent call last):
+    |   File "C:\Users\samar\OneDrive\Desktop\pes\pessem5\software engineering\lab\L6_L7_42_salon_booking\Lab 7\test_processor.py", line 19, in test_parse_booking_no_crash
+    |     result = parse_booking(value)
+    |              ^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\samar\OneDrive\Desktop\pes\pessem5\software engineering\lab\L6_L7_42_salon_booking\Lab 7\salon_booking.py", line 2, in parse_booking
+    |     service, minutes = text.split(':')
+    |                        ^^^^^^^^^^
+    | AttributeError: 'NoneType' object has no attribute 'split'
+    | Failing test case: test_parse_booking_no_crash(
+    |     value=None,  # or any other generated value
+    | )
+    +------------------------------------
+_______________________ test_duration_average_no_crash ________________________
+  + Exception Group Traceback (most recent call last):
+  |   File "C:\Users\samar\OneDrive\Desktop\pes\pessem5\software engineering\lab\L6_L7_42_salon_booking\Lab 7\test_processor.py", line 24, in test_duration_average_no_crash
+  |     def test_duration_average_no_crash(value):
+  |                    ^^^
+  | ExceptionGroup: Hypothesis found 2 distinct failures. (2 sub-exceptions)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "C:\Users\samar\OneDrive\Desktop\pes\pessem5\software engineering\lab\L6_L7_42_salon_booking\Lab 7\test_processor.py", line 25, in test_duration_average_no_crash
+    |     result = duration_average(value)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\samar\OneDrive\Desktop\pes\pessem5\software engineering\lab\L6_L7_42_salon_booking\Lab 7\salon_booking.py", line 6, in duration_average
+    |     values = [int(r) for r in durations_csv.split(',')]
+    |               ^^^^^^
+    | ValueError: invalid literal for int() with base 10: ''
+    | Failing test case: test_duration_average_no_crash(
+    |     value='',
+    | )
+    +---------------- 2 ----------------
+    | Traceback (most recent call last):
+    |   File "C:\Users\samar\OneDrive\Desktop\pes\pessem5\software engineering\lab\L6_L7_42_salon_booking\Lab 7\test_processor.py", line 25, in test_duration_average_no_crash
+    |     result = duration_average(value)
+    |              ^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\samar\OneDrive\Desktop\pes\pessem5\software engineering\lab\L6_L7_42_salon_booking\Lab 7\salon_booking.py", line 6, in duration_average
+    |     values = [int(r) for r in durations_csv.split(',')]
+    |                               ^^^^^^^^^^^^^^^^^^^
+    | AttributeError: 'NoneType' object has no attribute 'split'
+    | Failing test case: test_duration_average_no_crash(
+    |     value=None,  # or any other generated value
+    | )
+    +------------------------------------
+_________________________ test_payable_bill_no_crash __________________________
+  + Exception Group Traceback (most recent call last):
+  |   File "C:\Users\samar\OneDrive\Desktop\pes\pessem5\software engineering\lab\L6_L7_42_salon_booking\Lab 7\test_processor.py", line 29, in test_payable_bill_no_crash
+  |     def test_payable_bill_no_crash(value):
+  |                    ^^^
+  | ExceptionGroup: Hypothesis found 2 distinct failures. (2 sub-exceptions)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "C:\Users\samar\OneDrive\Desktop\pes\pessem5\software engineering\lab\L6_L7_42_salon_booking\Lab 7\test_processor.py", line 30, in test_payable_bill_no_crash
+    |     result = payable_bill(value)
+    |              ^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\samar\OneDrive\Desktop\pes\pessem5\software engineering\lab\L6_L7_42_salon_booking\Lab 7\salon_booking.py", line 10, in payable_bill
+    |     bill, discount = text.split('|')
+    |     ^^^^^^^^^^^^^^
+    | ValueError: not enough values to unpack (expected 2, got 1)
+    | Failing test case: test_payable_bill_no_crash(
+    |     value='',
+    | )
+    +---------------- 2 ----------------
+    | Traceback (most recent call last):
+    |   File "C:\Users\samar\OneDrive\Desktop\pes\pessem5\software engineering\lab\L6_L7_42_salon_booking\Lab 7\test_processor.py", line 30, in test_payable_bill_no_crash
+    |     result = payable_bill(value)
+    |              ^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Users\samar\OneDrive\Desktop\pes\pessem5\software engineering\lab\L6_L7_42_salon_booking\Lab 7\salon_booking.py", line 10, in payable_bill
+    |     bill, discount = text.split('|')
+    |                      ^^^^^^^^^^
+    | AttributeError: 'NoneType' object has no attribute 'split'
+    | Failing test case: test_payable_bill_no_crash(
+    |     value=None,  # or any other generated value
+    | )
+    +------------------------------------
+_________________________ test_invalid_bookings[None] _________________________
+test_processor.py:50: in test_invalid_bookings
+    assert parse_booking(value) is None
+           ^^^^^^^^^^^^^^^^^^^^
+salon_booking.py:2: in parse_booking
+    service, minutes = text.split(':')
+                       ^^^^^^^^^^
+E   AttributeError: 'NoneType' object has no attribute 'split'
+___________________________ test_invalid_bookings[] ___________________________
+test_processor.py:50: in test_invalid_bookings
+    assert parse_booking(value) is None
+           ^^^^^^^^^^^^^^^^^^^^
+salon_booking.py:2: in parse_booking
+    service, minutes = text.split(':')
+    ^^^^^^^^^^^^^^^^
+E   ValueError: not enough values to unpack (expected 2, got 1)
+_______________________ test_invalid_bookings[haircut] ________________________
+test_processor.py:50: in test_invalid_bookings
+    assert parse_booking(value) is None
+           ^^^^^^^^^^^^^^^^^^^^
+salon_booking.py:2: in parse_booking
+    service, minutes = text.split(':')
+    ^^^^^^^^^^^^^^^^
+E   ValueError: not enough values to unpack (expected 2, got 1)
+_____________________ test_invalid_bookings[haircut:1:2] ______________________
+test_processor.py:50: in test_invalid_bookings
+    assert parse_booking(value) is None
+           ^^^^^^^^^^^^^^^^^^^^
+salon_booking.py:2: in parse_booking
+    service, minutes = text.split(':')
+    ^^^^^^^^^^^^^^^^
+E   ValueError: too many values to unpack (expected 2)
+______________________ test_invalid_bookings[unknown:3] _______________________
+test_processor.py:50: in test_invalid_bookings
+    assert parse_booking(value) is None
+E   AssertionError: assert ('Unknown', 3.0) is None
+E    +  where ('Unknown', 3.0) = parse_booking('unknown:3')
+______________________ test_invalid_bookings[haircut:-1] ______________________
+test_processor.py:50: in test_invalid_bookings
+    assert parse_booking(value) is None
+E   AssertionError: assert ('Haircut', -1.0) is None
+E    +  where ('Haircut', -1.0) = parse_booking('haircut:-1')
+_____________________ test_invalid_bookings[haircut:nan] ______________________
+test_processor.py:50: in test_invalid_bookings
+    assert parse_booking(value) is None
+E   AssertionError: assert ('Haircut', nan) is None
+E    +  where ('Haircut', nan) = parse_booking('haircut:nan')
+_______________________ test_invalid_bookings[spa:inf] ________________________
+test_processor.py:50: in test_invalid_bookings
+    assert parse_booking(value) is None
+E   AssertionError: assert ('Spa', inf) is None
+E    +  where ('Spa', inf) = parse_booking('spa:inf')
+________________________ test_invalid_bookings[value8] ________________________
+test_processor.py:50: in test_invalid_bookings
+    assert parse_booking(value) is None
+           ^^^^^^^^^^^^^^^^^^^^
+salon_booking.py:2: in parse_booking
+    service, minutes = text.split(':')
+                       ^^^^^^^^^^
+E   AttributeError: 'list' object has no attribute 'split'
+_________________________ test_invalid_bookings[True] _________________________
+test_processor.py:50: in test_invalid_bookings
+    assert parse_booking(value) is None
+           ^^^^^^^^^^^^^^^^^^^^
+salon_booking.py:2: in parse_booking
+    service, minutes = text.split(':')
+                       ^^^^^^^^^^
+E   AttributeError: 'bool' object has no attribute 'split'
+_______________________ test_invalid_bookings[value10] ________________________
+test_processor.py:50: in test_invalid_bookings
+    assert parse_booking(value) is None
+E   AssertionError: assert ('Spa', inf) is None
+E    +  where ('Spa', inf) = parse_booking('spa:99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999...9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999')
+_________________________ test_invalid_averages[None] _________________________
+test_processor.py:55: in test_invalid_averages
+    assert duration_average(value) is None
+           ^^^^^^^^^^^^^^^^^^^^^^^
+salon_booking.py:6: in duration_average
+    values = [int(r) for r in durations_csv.split(',')]
+                              ^^^^^^^^^^^^^^^^^^^
+E   AttributeError: 'NoneType' object has no attribute 'split'
+___________________________ test_invalid_averages[] ___________________________
+test_processor.py:55: in test_invalid_averages
+    assert duration_average(value) is None
+           ^^^^^^^^^^^^^^^^^^^^^^^
+salon_booking.py:6: in duration_average
+    values = [int(r) for r in durations_csv.split(',')]
+              ^^^^^^
+E   ValueError: invalid literal for int() with base 10: ''
+_________________________ test_invalid_averages[1,,3] _________________________
+test_processor.py:55: in test_invalid_averages
+    assert duration_average(value) is None
+           ^^^^^^^^^^^^^^^^^^^^^^^
+salon_booking.py:6: in duration_average
+    values = [int(r) for r in durations_csv.split(',')]
+              ^^^^^^
+E   ValueError: invalid literal for int() with base 10: ''
+__________________________ test_invalid_averages[1,] __________________________
+test_processor.py:55: in test_invalid_averages
+    assert duration_average(value) is None
+           ^^^^^^^^^^^^^^^^^^^^^^^
+salon_booking.py:6: in duration_average
+    values = [int(r) for r in durations_csv.split(',')]
+              ^^^^^^
+E   ValueError: invalid literal for int() with base 10: ''
+_________________________ test_invalid_averages[-1,2] _________________________
+test_processor.py:55: in test_invalid_averages
+    assert duration_average(value) is None
+E   AssertionError: assert 0 is None
+E    +  where 0 = duration_average('-1,2')
+________________________ test_invalid_averages[1.5,2] _________________________
+test_processor.py:55: in test_invalid_averages
+    assert duration_average(value) is None
+           ^^^^^^^^^^^^^^^^^^^^^^^
+salon_booking.py:6: in duration_average
+    values = [int(r) for r in durations_csv.split(',')]
+              ^^^^^^
+E   ValueError: invalid literal for int() with base 10: '1.5'
+_________________________ test_invalid_averages[nan] __________________________
+test_processor.py:55: in test_invalid_averages
+    assert duration_average(value) is None
+           ^^^^^^^^^^^^^^^^^^^^^^^
+salon_booking.py:6: in duration_average
+    values = [int(r) for r in durations_csv.split(',')]
+              ^^^^^^
+E   ValueError: invalid literal for int() with base 10: 'nan'
+_________________________ test_invalid_averages[inf] __________________________
+test_processor.py:55: in test_invalid_averages
+    assert duration_average(value) is None
+           ^^^^^^^^^^^^^^^^^^^^^^^
+salon_booking.py:6: in duration_average
+    values = [int(r) for r in durations_csv.split(',')]
+              ^^^^^^
+E   ValueError: invalid literal for int() with base 10: 'inf'
+__________________________ test_invalid_averages[x] ___________________________
+test_processor.py:55: in test_invalid_averages
+    assert duration_average(value) is None
+           ^^^^^^^^^^^^^^^^^^^^^^^
+salon_booking.py:6: in duration_average
+    values = [int(r) for r in durations_csv.split(',')]
+              ^^^^^^
+E   ValueError: invalid literal for int() with base 10: 'x'
+________________________ test_invalid_averages[value9] ________________________
+test_processor.py:55: in test_invalid_averages
+    assert duration_average(value) is None
+           ^^^^^^^^^^^^^^^^^^^^^^^
+salon_booking.py:6: in duration_average
+    values = [int(r) for r in durations_csv.split(',')]
+                              ^^^^^^^^^^^^^^^^^^^
+E   AttributeError: 'dict' object has no attribute 'split'
+________________________ test_invalid_averages[False] _________________________
+test_processor.py:55: in test_invalid_averages
+    assert duration_average(value) is None
+           ^^^^^^^^^^^^^^^^^^^^^^^
+salon_booking.py:6: in duration_average
+    values = [int(r) for r in durations_csv.split(',')]
+                              ^^^^^^^^^^^^^^^^^^^
+E   AttributeError: 'bool' object has no attribute 'split'
+_______________________ test_invalid_averages[value11] ________________________
+test_processor.py:55: in test_invalid_averages
+    assert duration_average(value) is None
+           ^^^^^^^^^^^^^^^^^^^^^^^
+salon_booking.py:6: in duration_average
+    values = [int(r) for r in durations_csv.split(',')]
+              ^^^^^^
+E   ValueError: Exceeds the limit (4300 digits) for integer string conversion: value has 5000 digits; use sys.set_int_max_str_digits() to increase the limit
+__________________________ test_invalid_bills[None] ___________________________
+test_processor.py:60: in test_invalid_bills
+    assert payable_bill(value) is None
+           ^^^^^^^^^^^^^^^^^^^
+salon_booking.py:10: in payable_bill
+    bill, discount = text.split('|')
+                     ^^^^^^^^^^
+E   AttributeError: 'NoneType' object has no attribute 'split'
+____________________________ test_invalid_bills[] _____________________________
+test_processor.py:60: in test_invalid_bills
+    assert payable_bill(value) is None
+           ^^^^^^^^^^^^^^^^^^^
+salon_booking.py:10: in payable_bill
+    bill, discount = text.split('|')
+    ^^^^^^^^^^^^^^
+E   ValueError: not enough values to unpack (expected 2, got 1)
+____________________________ test_invalid_bills[1] ____________________________
+test_processor.py:60: in test_invalid_bills
+    assert payable_bill(value) is None
+           ^^^^^^^^^^^^^^^^^^^
+salon_booking.py:10: in payable_bill
+    bill, discount = text.split('|')
+    ^^^^^^^^^^^^^^
+E   ValueError: not enough values to unpack (expected 2, got 1)
+__________________________ test_invalid_bills[1|2|3] __________________________
+test_processor.py:60: in test_invalid_bills
+    assert payable_bill(value) is None
+           ^^^^^^^^^^^^^^^^^^^
+salon_booking.py:10: in payable_bill
+    bill, discount = text.split('|')
+    ^^^^^^^^^^^^^^
+E   ValueError: too many values to unpack (expected 2)
+__________________________ test_invalid_bills[-1|0] ___________________________
+test_processor.py:60: in test_invalid_bills
+    assert payable_bill(value) is None
+E   AssertionError: assert 0 is None
+E    +  where 0 = payable_bill('-1|0')
+__________________________ test_invalid_bills[1|-1] ___________________________
+test_processor.py:60: in test_invalid_bills
+    assert payable_bill(value) is None
+E   AssertionError: assert 2.1799999999999997 is None
+E    +  where 2.1799999999999997 = payable_bill('1|-1')
+__________________________ test_invalid_bills[nan|0] __________________________
+test_processor.py:60: in test_invalid_bills
+    assert payable_bill(value) is None
+E   AssertionError: assert nan is None
+E    +  where nan = payable_bill('nan|0')
+__________________________ test_invalid_bills[inf|0] __________________________
+test_processor.py:60: in test_invalid_bills
+    assert payable_bill(value) is None
+E   AssertionError: assert inf is None
+E    +  where inf = payable_bill('inf|0')
+__________________________ test_invalid_bills[0|nan] __________________________
+test_processor.py:60: in test_invalid_bills
+    assert payable_bill(value) is None
+E   AssertionError: assert nan is None
+E    +  where nan = payable_bill('0|nan')
+_________________________ test_invalid_bills[value9] __________________________
+test_processor.py:60: in test_invalid_bills
+    assert payable_bill(value) is None
+           ^^^^^^^^^^^^^^^^^^^
+salon_booking.py:10: in payable_bill
+    bill, discount = text.split('|')
+                     ^^^^^^^^^^
+E   AttributeError: 'list' object has no attribute 'split'
+__________________________ test_invalid_bills[True] ___________________________
+test_processor.py:60: in test_invalid_bills
+    assert payable_bill(value) is None
+           ^^^^^^^^^^^^^^^^^^^
+salon_booking.py:10: in payable_bill
+    bill, discount = text.split('|')
+                     ^^^^^^^^^^
+E   AttributeError: 'bool' object has no attribute 'split'
+________________________ test_invalid_bills[1.7e308|0] ________________________
+test_processor.py:60: in test_invalid_bills
+    assert payable_bill(value) is None
+E   AssertionError: assert inf is None
+E    +  where inf = payable_bill('1.7e308|0')
+=========================== short test summary info ===========================
+FAILED test_processor.py::test_parse_booking_no_crash - ExceptionGroup: Hypot...
+FAILED test_processor.py::test_duration_average_no_crash - ExceptionGroup: Hy...
+FAILED test_processor.py::test_payable_bill_no_crash - ExceptionGroup: Hypoth...
+FAILED test_processor.py::test_invalid_bookings[None] - AttributeError: 'None...
+FAILED test_processor.py::test_invalid_bookings[] - ValueError: not enough va...
+FAILED test_processor.py::test_invalid_bookings[haircut] - ValueError: not en...
+FAILED test_processor.py::test_invalid_bookings[haircut:1:2] - ValueError: to...
+FAILED test_processor.py::test_invalid_bookings[unknown:3] - AssertionError: ...
+FAILED test_processor.py::test_invalid_bookings[haircut:-1] - AssertionError:...
+FAILED test_processor.py::test_invalid_bookings[haircut:nan] - AssertionError...
+FAILED test_processor.py::test_invalid_bookings[spa:inf] - AssertionError: as...
+FAILED test_processor.py::test_invalid_bookings[value8] - AttributeError: 'li...
+FAILED test_processor.py::test_invalid_bookings[True] - AttributeError: 'bool...
+FAILED test_processor.py::test_invalid_bookings[value10] - AssertionError: as...
+FAILED test_processor.py::test_invalid_averages[None] - AttributeError: 'None...
+FAILED test_processor.py::test_invalid_averages[] - ValueError: invalid liter...
+FAILED test_processor.py::test_invalid_averages[1,,3] - ValueError: invalid l...
+FAILED test_processor.py::test_invalid_averages[1,] - ValueError: invalid lit...
+FAILED test_processor.py::test_invalid_averages[-1,2] - AssertionError: asser...
+FAILED test_processor.py::test_invalid_averages[1.5,2] - ValueError: invalid ...
+FAILED test_processor.py::test_invalid_averages[nan] - ValueError: invalid li...
+FAILED test_processor.py::test_invalid_averages[inf] - ValueError: invalid li...
+FAILED test_processor.py::test_invalid_averages[x] - ValueError: invalid lite...
+FAILED test_processor.py::test_invalid_averages[value9] - AttributeError: 'di...
+FAILED test_processor.py::test_invalid_averages[False] - AttributeError: 'boo...
+FAILED test_processor.py::test_invalid_averages[value11] - ValueError: Exceed...
+FAILED test_processor.py::test_invalid_bills[None] - AttributeError: 'NoneTyp...
+FAILED test_processor.py::test_invalid_bills[] - ValueError: not enough value...
+FAILED test_processor.py::test_invalid_bills[1] - ValueError: not enough valu...
+FAILED test_processor.py::test_invalid_bills[1|2|3] - ValueError: too many va...
+FAILED test_processor.py::test_invalid_bills[-1|0] - AssertionError: assert 0...
+FAILED test_processor.py::test_invalid_bills[1|-1] - AssertionError: assert 2...
+FAILED test_processor.py::test_invalid_bills[nan|0] - AssertionError: assert ...
+FAILED test_processor.py::test_invalid_bills[inf|0] - AssertionError: assert ...
+FAILED test_processor.py::test_invalid_bills[0|nan] - AssertionError: assert ...
+FAILED test_processor.py::test_invalid_bills[value9] - AttributeError: 'list'...
+FAILED test_processor.py::test_invalid_bills[True] - AttributeError: 'bool' o...
+FAILED test_processor.py::test_invalid_bills[1.7e308|0] - AssertionError: ass...
+======================== 38 failed, 4 passed in 1.76s =========================
+
+Exit code: 1

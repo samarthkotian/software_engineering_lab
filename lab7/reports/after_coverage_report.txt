@@ -1,0 +1,8 @@
+$ python -m coverage report -m
+Name               Stmts   Miss Branch BrPart  Cover   Missing
+--------------------------------------------------------------
+salon_booking.py      67     14     30      1    80%   25-26, 76-94, 98
+--------------------------------------------------------------
+TOTAL                 67     14     30      1    80%
+
+Exit code: 0

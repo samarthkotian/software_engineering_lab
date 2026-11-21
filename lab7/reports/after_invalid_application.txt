@@ -1,0 +1,13 @@
+$ python salon_booking.py
+Inputs (one per prompt): '\n1,,3\nnan|0\n'
+
+==== Running parse_booking ====
+Enter service:duration in min (e.g. haircut:45): Invalid input. Use the format shown, with finite nonnegative numbers.
+
+==== Running duration_average ====
+Enter durations as CSV (e.g. 30,45,60): Invalid input. Use the format shown, with finite nonnegative numbers.
+
+==== Running payable_bill ====
+Enter bill|discount (e.g. 800|100): Invalid input. Use the format shown, with finite nonnegative numbers.
+
+Exit code: 0

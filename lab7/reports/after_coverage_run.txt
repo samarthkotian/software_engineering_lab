@@ -1,0 +1,5 @@
+$ python -m coverage run --branch --source=salon_booking -m pytest test_processor.py -q
+..........................................                               [100%]
+42 passed in 2.01s
+
+Exit code: 0
