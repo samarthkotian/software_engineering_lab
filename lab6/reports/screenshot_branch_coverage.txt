@@ -1,0 +1,13 @@
+> python -m coverage run --branch --source=salon_booking -m pytest BranchCoverageTest_salon_booking.py -q
+.......................................................................  [100%]
+71 passed in 0.70s
+
+Exit code: 0
+> python -m coverage report -m --fail-under=90
+Name               Stmts   Miss Branch BrPart  Cover   Missing
+--------------------------------------------------------------
+salon_booking.py      37      0     26      0   100%
+--------------------------------------------------------------
+TOTAL                 37      0     26      0   100%
+
+Exit code: 0
