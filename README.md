@@ -7,10 +7,16 @@
 | 1 | Requirements and use cases | [lab1](lab1/) |
 | 2 | Software design | [lab2](lab2/) |
 | 3 | Architecture | [Report](lab3.pdf) |
-| 4 | Dino Run testing and enhancements | [lab4](lab4/) |
+| 4 | Dino Run testing and enhancements | [lab4](lab4/) - [Submission PDF](lab4/output/pdf/Lab4_PES1UG24CS406_Submission.pdf) |
 | 5 | Static code analysis | [lab5](lab5/) |
 | 6 | Code and branch coverage - Salon Booking | [Instructions and results](lab6/README.md) |
 | 7 | Fuzz testing and input validation - Salon Booking | [Instructions and results](lab7/README.md) |
+
+## Lab 4 chat history
+
+[Complete Lab 4 conversation](https://chatgpt.com/s/cx_6b01e93fce00819188c6779c1bed1f5b)
+and its [PDF export](lab4/chat_history.pdf). The submitted code and after-video
+match the final implementation in that conversation.
 
 ## Labs 6 and 7
 

@@ -1,5 +1,6 @@
 import random
 from pathlib import Path
+
 import pygame
 
 WIDTH, HEIGHT = 900, 400
@@ -8,40 +9,37 @@ FPS = 60
 BG_COLOR = (245, 245, 245)
 GROUND_COLOR = (80, 80, 80)
 GRAVITY, JUMP_FORCE = 0.6, -14
+# Keep the same saved best regardless of the folder used to launch the game.
 HIGH_SCORE_FILE = Path(__file__).resolve().with_name("dino_highscore.txt")
+CLEAR_NOTIFICATION_MS = 1200
 
 
 def dino_tint(on_ground):
-    """Keep the default green on the ground; turn blue while airborne."""
+    """Keep the default green on the ground; use blue in the air."""
     return None if on_ground else (50, 120, 220)
 
 
 def on_obstacle_passed(obstacle, score):
-    """Prepare a floating notification when an obstacle is cleared."""
-    obstacle.popup = {
-        "text": f"+1 CLEAR (score {score})",
-        "x": obstacle.rect.right + 10,
-        "y": GROUND_Y - 95,
-        "frames": FPS,
-    }
+    """Build the clear message; Game owns the per-run combo and its display."""
+    return f"CLEAR! Score: {score}"
 
 
 def max_jumps():
-    """Allow one ground jump and one midair jump before landing."""
+    """Allow two jumps before the dino must land again."""
     return 2
 
 
 def load_high_score():
     try:
-        with open(HIGH_SCORE_FILE, encoding="utf-8") as f:
-            return max(0, int(f.read().strip()))
+        with open(HIGH_SCORE_FILE) as f:
+            return int(f.read().strip())
     except (OSError, ValueError):
         return 0
 
 
 def save_high_score(value):
     try:
-        with open(HIGH_SCORE_FILE, "w", encoding="utf-8") as f:
+        with open(HIGH_SCORE_FILE, "w") as f:
             f.write(str(value))
     except OSError:
         pass
@@ -50,6 +48,8 @@ def save_high_score(value):
 class Dino:
     def __init__(self, x, y):
         self.rect = pygame.Rect(x, y, 50, 60)
+        # y is the ground height, so start with the feet on the ground.
+        self.rect.bottom = y
         self.vel_y = 0.0
         self.on_ground = True
         self.jump_count = 0
@@ -108,14 +108,14 @@ class Game:
         self.reset()
 
     def reset(self):
-        self.dino = Dino(80, GROUND_Y - 60)
+        self.dino = Dino(80, GROUND_Y)
         self.obstacles = []
         self.score = 0
+        self.combo = 0
+        self.notifications = []
         self.speed = 6
         self.spawn_timer = 0
         self.spawn_interval = 90
-        self.combo = 0
-        self.popups = []
         self.state = "wait"
 
     def start_or_jump(self):
@@ -127,12 +127,14 @@ class Game:
         self.dino.jump()
 
     def update(self):
+        now = pygame.time.get_ticks()
+        # Expire messages even while the game-over screen is showing.
+        self.notifications = [
+            (text, expires_at) for text, expires_at in self.notifications
+            if now < expires_at
+        ]
         if self.state != "play":
             return
-        for popup in self.popups:
-            popup["frames"] -= 1
-            popup["y"] -= 0.6
-        self.popups = [p for p in self.popups if p["frames"] > 0]
         self.dino.update(GROUND_Y)
         self.spawn_timer += 1
         if self.spawn_timer >= self.spawn_interval:
@@ -145,9 +147,11 @@ class Game:
             obs.update()
             if not obs.passed and obs.rect.right < self.dino.rect.left:
                 obs.passed = True
-                on_obstacle_passed(obs, self.score // 10)
+                message = on_obstacle_passed(obs, self.score // 10)
                 self.combo += 1
-                self.popups.append(obs.popup)
+                self.notifications.append(
+                    (f"{message}  Combo x{self.combo}", now + CLEAR_NOTIFICATION_MS)
+                )
             if obs.rect.colliderect(self.dino.rect):
                 hit = True
         self.obstacles = [o for o in self.obstacles if not o.is_off_screen()]
@@ -155,7 +159,7 @@ class Game:
         if hit:
             self.state = "lose"
             current = self.score // 10
-            if current > self.high_score:
+            if self.high_score < current:
                 self.high_score = current
                 save_high_score(self.high_score)
             return
@@ -170,18 +174,15 @@ class Game:
         self.dino.draw(screen)
         for obs in self.obstacles:
             obs.draw(screen)
-        for popup in self.popups:
-            text = self.font.render(popup["text"], True, (25, 110, 70))
-            screen.blit(text, (popup["x"], int(popup["y"])))
-
-        combo_surf = self.font.render(f"Combo: {self.combo} cleared", True, (25, 110, 70))
-        screen.blit(combo_surf, (20, 20))
 
         score_surf = self.font.render(f"Score: {self.score // 10}   Best: {self.high_score}", True, (50, 50, 50))
         screen.blit(score_surf, (WIDTH - 260, 20))
 
-        controls = self.font.render("SPACE / UP / W: jump | Tap again in the air: double jump", True, (80, 80, 80))
-        screen.blit(controls, (20, HEIGHT - 32))
+        combo_surf = self.font.render(f"Combo: {self.combo}", True, (50, 50, 50))
+        screen.blit(combo_surf, (20, 20))
+        for index, (text, _) in enumerate(self.notifications):
+            notification_surf = self.font.render(text, True, (30, 100, 180))
+            screen.blit(notification_surf, (20, 55 + index * 28))
 
         if self.state == "wait":
             msg = self.big_font.render("Press SPACE to Start", True, (80, 80, 80))
