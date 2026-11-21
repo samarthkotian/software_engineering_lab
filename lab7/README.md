@@ -26,7 +26,8 @@ are disabled. Complete example counts and any discarded draws are recorded in
 - [Lab 7 PDF](output/pdf/Lab7_PES1UG24CS406_Fuzz_Testing.pdf): before/after output
   images, bugs and fixes, reflections and complete final source appendices.
 - [evidence](evidence/): original application, failing tests, fixed application,
-  and passing tests. Images are labeled renderings of actual captured output.
+  and passing tests, captured from the live xterm browser terminal during fresh
+  local runs. Matching transcripts are in `reports/screenshot_*.txt`.
 - [reports](reports/): full logs, original tracebacks and final Hypothesis statistics.
 - `original/`: unchanged application and incomplete assigned test skeleton.
 

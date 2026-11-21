@@ -1,0 +1,25 @@
+> python salon_booking.py
+==== Running parse_booking ====
+Enter service:duration in min (e.g. haircut:45): Service and Duration: ('Haircut', 45.0)
+
+==== Running duration_average ====
+Enter durations as CSV (e.g. 30,45,60): Average Duration: 45
+
+==== Running payable_bill ====
+Enter bill|discount (e.g. 800|100): Payable Bill: 844.0
+
+Exit code: 0
+> python salon_booking.py
+==== Running parse_booking ====
+Enter service:duration in min (e.g. haircut:45): Traceback (most recent call last):
+  File "C:\Users\samar\OneDrive\Desktop\pes\pessem5\software engineering\lab\live_terminal_control\original_lab7\salon_booking.py", line 31, in <module>
+    main()
+  File "C:\Users\samar\OneDrive\Desktop\pes\pessem5\software engineering\lab\live_terminal_control\original_lab7\salon_booking.py", line 17, in main
+    result = parse_booking(user_input)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\samar\OneDrive\Desktop\pes\pessem5\software engineering\lab\live_terminal_control\original_lab7\salon_booking.py", line 2, in parse_booking
+    service, minutes = text.split(':')
+    ^^^^^^^^^^^^^^^^
+ValueError: not enough values to unpack (expected 2, got 1)
+
+Exit code: 1

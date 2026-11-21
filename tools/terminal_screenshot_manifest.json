@@ -1,0 +1,62 @@
+[
+  {
+    "path": "lab6/evidence/branch_coverage.png",
+    "sha256": "bfb30ff95c2a2588df5d359e49fa631befe8a1a89bf061ee653577347c40fe6b",
+    "size": [
+      1265,
+      712
+    ],
+    "source": "Computer-use browser screenshot of live xterm terminal",
+    "transcript": "lab6/reports/screenshot_branch_coverage.txt"
+  },
+  {
+    "path": "lab6/evidence/line_coverage.png",
+    "sha256": "072e0f00a16e0412be5319530566a0a4fe0ddced4ec7f28edc4e11de9d7d6cf4",
+    "size": [
+      1265,
+      712
+    ],
+    "source": "Computer-use browser screenshot of live xterm terminal",
+    "transcript": "lab6/reports/screenshot_line_coverage.txt"
+  },
+  {
+    "path": "lab7/evidence/after_application.png",
+    "sha256": "6a18e4200521db44fde5ab610c475bca90e60b6d9e1f0bd11967818ad16dca72",
+    "size": [
+      1265,
+      712
+    ],
+    "source": "Computer-use browser screenshot of live xterm terminal",
+    "transcript": "lab7/reports/screenshot_after_application.txt"
+  },
+  {
+    "path": "lab7/evidence/after_fuzz.png",
+    "sha256": "224d98e1e45d6aa9d22bb9f6aaf107353099374b2775976f86afb89e09bbd1ed",
+    "size": [
+      1265,
+      712
+    ],
+    "source": "Computer-use browser screenshot of live xterm terminal",
+    "transcript": "lab7/reports/screenshot_after_fuzz.txt"
+  },
+  {
+    "path": "lab7/evidence/before_application.png",
+    "sha256": "960059cefa4f416237ff2222f14b8af3a916e30df420c814e7ffa02960719918",
+    "size": [
+      1265,
+      712
+    ],
+    "source": "Computer-use browser screenshot of live xterm terminal",
+    "transcript": "lab7/reports/screenshot_before_application.txt"
+  },
+  {
+    "path": "lab7/evidence/before_fuzz.png",
+    "sha256": "af653d06cbd006d459b7d87be199a976a71e3cdce1e971dd002d401218f5989b",
+    "size": [
+      1265,
+      712
+    ],
+    "source": "Computer-use browser screenshot of live xterm terminal",
+    "transcript": "lab7/reports/screenshot_before_fuzz.txt"
+  }
+]

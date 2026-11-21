@@ -20,8 +20,8 @@ has no missing statements or partial branches.
 - [CodeCoverageTest_salon_booking.py](CodeCoverageTest_salon_booking.py): line suite.
 - [BranchCoverageTest_salon_booking.py](BranchCoverageTest_salon_booking.py):
   decision outcomes and boundary cases.
-- [evidence](evidence/): final line and branch output images, rendered from saved
-  process logs and labeled as such.
+- [evidence](evidence/): actual screenshots of final line and branch coverage
+  in the live xterm browser terminal, showing 100% coverage for both.
 - [reports](reports/): complete initial/final logs and machine-readable coverage JSON.
 - [PDF report](output/pdf/Lab6_PES1UG24CS406_Coverage.pdf): results, interpretation,
   test design and final evidence.

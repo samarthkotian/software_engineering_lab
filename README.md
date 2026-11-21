@@ -36,6 +36,7 @@ See the [deliverables checklist](Lab6_Lab7_README.md) and the final reports:
 - [Lab 6 coverage report](lab6/output/pdf/Lab6_PES1UG24CS406_Coverage.pdf)
 - [Lab 7 fuzz-testing report](lab7/output/pdf/Lab7_PES1UG24CS406_Fuzz_Testing.pdf)
 
-Evidence images are generated from saved, actual process output; they are
-labeled as rendered output rather than desktop screen captures. Raw logs and
-original starter files are retained for reproducibility.
+Evidence images are actual screenshots of the live xterm browser terminal,
+displaying fresh local Python test runs. The report builder embeds those PNGs
+without recreating or changing the terminal output. Raw capture transcripts,
+analysis logs and original starter files are retained for reproducibility.

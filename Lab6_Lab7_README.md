@@ -22,10 +22,10 @@ Booking module; the reference submission uses a different assigned project.
 | Final coverage output images only after reaching the threshold | `lab6/evidence/line_coverage.png` and `branch_coverage.png` |
 | Separate line and branch commits | `cf1151f` (line) and `881c31d` (branch) |
 
-The handout requests terminal-output screenshots. The included images render
-the actual saved terminal output and are labeled accordingly; they are not
-desktop captures. If literal desktop screenshots are required by the evaluator,
-capture the commands in [lab6/README.md](lab6/README.md) and replace the images.
+The required terminal-output screenshots are captured from a live xterm browser
+terminal displaying freshly executed local Python commands. They show the
+commands, test counts, final coverage percentages and exit codes. The capture
+transcripts are saved as `lab6/reports/screenshot_*.txt`.
 
 [Consolidated Lab 6 PDF](lab6/output/pdf/Lab6_PES1UG24CS406_Coverage.pdf).
 The Lab 6 application is unchanged. Run both independent suites from `lab6/`.
@@ -43,11 +43,13 @@ The Lab 6 application is unchanged. Run both independent suites from `lab6/`.
 | PDF with before-and-after output images | [Lab 7 PDF](lab7/output/pdf/Lab7_PES1UG24CS406_Fuzz_Testing.pdf) |
 | Fixed Python script and updated tests | Included directly in `lab7/` and in the PDF appendices |
 
-The four Lab 7 evidence images are in `lab7/evidence/`. They render the recorded
-outputs; complete tracebacks and Hypothesis statistics are retained in the raw
-logs. The PDF also includes a bug/fix discussion, reflection answers and the
-final source code. Those explanatory sections supplement the handout's listed
-deliverables.
+The four Lab 7 terminal screenshots are in `lab7/evidence/`. They show fresh runs
+of the original application, failing tests, fixed application, and passing
+tests. The original runs use an isolated copy of the assigned buggy application
+and the same completed test suite. Capture transcripts are saved as
+`lab7/reports/screenshot_*.txt`; complete tracebacks and Hypothesis statistics
+remain in the analysis logs. The PDF includes Observations, a bug/fix discussion,
+reflections and the final source code.
 
 ## Reproduce
 
