@@ -111,6 +111,64 @@ class ObstacleFeedbackTests(GameTestCase):
         self.assertEqual(run.popups, [])
 
 
+class JumpAndRestartTests(GameTestCase):
+    def test_first_key_starts_above_ground_and_midair_key_double_jumps(self):
+        run = game.Game()
+        self.assertEqual(run.dino.rect.bottom, game.GROUND_Y)
+        run.start_or_jump()
+        run.update()
+        self.assertEqual(run.state, "play")
+        self.assertLess(run.dino.rect.bottom, game.GROUND_Y)
+        self.assertEqual(run.dino.jump_count, 1)
+        run.start_or_jump()
+        self.assertEqual(run.dino.jump_count, 2)
+        self.assertEqual(run.dino.vel_y, game.JUMP_FORCE)
+
+    def test_third_jump_is_blocked_and_landing_replenishes_jumps(self):
+        dino = game.Dino(80, game.GROUND_Y - 60)
+        dino.jump()
+        dino.update(game.GROUND_Y)
+        dino.jump()
+        dino.update(game.GROUND_Y)
+        velocity = dino.vel_y
+        dino.jump()
+        self.assertEqual(dino.jump_count, 2)
+        self.assertEqual(dino.vel_y, velocity)
+        for _ in range(120):
+            dino.update(game.GROUND_Y)
+        self.assertTrue(dino.on_ground)
+        self.assertEqual(dino.jump_count, 0)
+        self.assertEqual(dino.rect.bottom, game.GROUND_Y)
+        dino.jump()
+        self.assertEqual(dino.jump_count, 1)
+
+    def test_restart_resets_run_state_but_preserves_best(self):
+        run = self.collide(12, 5)
+        run.combo = 4
+        run.start_or_jump()
+        self.assertEqual(run.state, "wait")
+        self.assertEqual(run.high_score, 12)
+        self.assertEqual(run.score, 0)
+        self.assertEqual(run.speed, 6)
+        self.assertEqual(run.obstacles, [])
+        self.assertEqual(run.combo, 0)
+        self.assertEqual(run.dino.jump_count, 0)
+        self.assertEqual(run.dino.rect.bottom, game.GROUND_Y)
+
+    def test_wait_and_game_over_freeze_score_and_speed_ramps_during_play(self):
+        run = game.Game()
+        run.update()
+        self.assertEqual(run.score, 0)
+        run.state = "play"
+        run.score = 299
+        run.update()
+        self.assertEqual(run.score, 300)
+        self.assertEqual(run.speed, 6.5)
+        run.state = "lose"
+        run.update()
+        self.assertEqual(run.score, 300)
+
+
 class TintTests(unittest.TestCase):
     def test_draw_changes_color_in_air_and_restores_it_on_ground(self):
         dino = game.Dino(80, 100)

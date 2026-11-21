@@ -27,8 +27,8 @@ def on_obstacle_passed(obstacle, score):
 
 
 def max_jumps():
-    """Return how many jumps the dino gets before it must land again (2 for a double jump), or None for the default of 1."""
-    pass
+    """Allow one ground jump and one midair jump before landing."""
+    return 2
 
 
 def load_high_score():
@@ -108,7 +108,7 @@ class Game:
         self.reset()
 
     def reset(self):
-        self.dino = Dino(80, GROUND_Y)
+        self.dino = Dino(80, GROUND_Y - 60)
         self.obstacles = []
         self.score = 0
         self.speed = 6
@@ -179,6 +179,9 @@ class Game:
 
         score_surf = self.font.render(f"Score: {self.score // 10}   Best: {self.high_score}", True, (50, 50, 50))
         screen.blit(score_surf, (WIDTH - 260, 20))
+
+        controls = self.font.render("SPACE / UP / W: jump | Tap again in the air: double jump", True, (80, 80, 80))
+        screen.blit(controls, (20, HEIGHT - 32))
 
         if self.state == "wait":
             msg = self.big_font.render("Press SPACE to Start", True, (80, 80, 80))
