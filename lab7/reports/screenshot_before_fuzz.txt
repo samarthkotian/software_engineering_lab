@@ -1,5 +1,5 @@
 > python -m pytest test_processor.py -q --tb=no --no-summary
 FFF...FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF.                               [100%]
-38 failed, 4 passed in 5.20s
+38 failed, 4 passed in 2.48s
 
 Exit code: 1

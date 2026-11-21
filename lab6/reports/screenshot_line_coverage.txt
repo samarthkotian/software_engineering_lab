@@ -1,6 +1,6 @@
 > python -m coverage run --source=salon_booking -m pytest CodeCoverageTest_salon_booking.py -q
 ..............                                                           [100%]
-14 passed in 0.64s
+14 passed in 0.61s
 
 Exit code: 0
 > python -m coverage report -m --fail-under=90

@@ -39,6 +39,7 @@ def stage(name, title, jobs):
     if selected and name != selected:
         return
     (CONTROL / f'{name}.continue').unlink(missing_ok=True)
+    (CONTROL / f'{name}.ready').unlink(missing_ok=True)
     # ANSI clear is interpreted by the real Windows Terminal, not an image API.
     print('\033[2J\033[H', end='', flush=True)
     print(f'{title} | Samarth Kotian | PES1UG24CS406\n', flush=True)
@@ -47,7 +48,6 @@ def stage(name, title, jobs):
         output += command(folder, arguments, inputs, expected)
     lab = 'lab6' if name in ('line_coverage', 'branch_coverage') else 'lab7'
     (REPO / lab / 'reports' / f'screenshot_{name}.txt').write_text(output, encoding='utf-8')
-    print('Screenshot ready. Waiting for capture...', flush=True)
     (CONTROL / f'{name}.ready').write_text('ready', encoding='utf-8')
     while not (CONTROL / f'{name}.continue').exists():
         time.sleep(0.2)
