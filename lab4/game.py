@@ -1,5 +1,6 @@
 import random
 from pathlib import Path
+
 import pygame
 
 WIDTH, HEIGHT = 900, 400
@@ -8,6 +9,7 @@ FPS = 60
 BG_COLOR = (245, 245, 245)
 GROUND_COLOR = (80, 80, 80)
 GRAVITY, JUMP_FORCE = 0.6, -14
+# Keep the same saved best regardless of the folder used to launch the game.
 HIGH_SCORE_FILE = Path(__file__).resolve().with_name("dino_highscore.txt")
 CLEAR_NOTIFICATION_MS = 1200
 
@@ -23,7 +25,7 @@ def on_obstacle_passed(obstacle, score):
 
 
 def max_jumps():
-    """Allow one ground jump and one midair jump before landing."""
+    """Allow two jumps before the dino must land again."""
     return 2
 
 
@@ -46,6 +48,8 @@ def save_high_score(value):
 class Dino:
     def __init__(self, x, y):
         self.rect = pygame.Rect(x, y, 50, 60)
+        # y is the ground height, so start with the feet on the ground.
+        self.rect.bottom = y
         self.vel_y = 0.0
         self.on_ground = True
         self.jump_count = 0
@@ -104,7 +108,7 @@ class Game:
         self.reset()
 
     def reset(self):
-        self.dino = Dino(80, GROUND_Y - 60)
+        self.dino = Dino(80, GROUND_Y)
         self.obstacles = []
         self.score = 0
         self.combo = 0
