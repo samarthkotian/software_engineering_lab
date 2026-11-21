@@ -1,21 +1,20 @@
-Lab 4 regression validation - 21 November 2026
+Lab 4 validation - 22 November 2026
+Python 3.12.14; Pygame 2.6.1; SDL dummy display/audio
 
-Command: python -m unittest discover -s tests -v
-Environment: Python 3.12.14, Pygame 2.6.1, SDL dummy display/audio
+test_all_screens_render_and_notifications_are_visible (test_game.FinalGameTests.test_all_screens_render_and_notifications_are_visible) ... ok
+test_double_jump_third_blocked_and_landing_rearms (test_game.FinalGameTests.test_double_jump_third_blocked_and_landing_rearms) ... ok
+test_high_score_higher_equal_lower_and_no_collision_clear (test_game.FinalGameTests.test_high_score_higher_equal_lower_and_no_collision_clear) ... ok
+test_initial_ground_and_first_jump (test_game.FinalGameTests.test_initial_ground_and_first_jump) ... ok
+test_main_loop_handles_each_control_and_quit (test_game.FinalGameTests.test_main_loop_handles_each_control_and_quit) ... ok
+test_missing_invalid_score_and_unwritable_save (test_game.FinalGameTests.test_missing_invalid_score_and_unwritable_save) ... ok
+test_new_process_saves_and_reloads_from_other_folder (test_game.FinalGameTests.test_new_process_saves_and_reloads_from_other_folder) ... ok
+test_notifications_expire_independently_during_game_over (test_game.FinalGameTests.test_notifications_expire_independently_during_game_over) ... ok
+test_pass_counts_once_and_not_on_spawn (test_game.FinalGameTests.test_pass_counts_once_and_not_on_spawn) ... ok
+test_rendered_ground_air_and_landing_colors (test_game.FinalGameTests.test_rendered_ground_air_and_landing_colors) ... ok
+test_restart_resets_run_state_and_keeps_best (test_game.FinalGameTests.test_restart_resets_run_state_and_keeps_best) ... ok
+test_spawn_score_speed_ramp_and_idle (test_game.FinalGameTests.test_spawn_score_speed_ramp_and_idle) ... ok
 
-test_lower_or_equal_score_does_not_overwrite_record ... ok
-test_missing_invalid_and_negative_scores_load_as_zero ... ok
-test_new_record_is_saved_and_loaded_by_new_game ... ok
-test_score_file_is_anchored_to_game_directory ... ok
-test_unwritable_score_location_does_not_crash ... ok
-test_first_key_starts_above_ground_and_midair_key_double_jumps ... ok
-test_restart_resets_run_state_but_preserves_best ... ok
-test_third_jump_is_blocked_and_landing_replenishes_jumps ... ok
-test_wait_and_game_over_freeze_score_and_speed_ramps_during_play ... ok
-test_approaching_or_colliding_obstacle_is_not_counted_as_cleared ... ok
-test_pass_event_counts_once_and_popup_survives_obstacle_removal ... ok
-test_popups_expire_and_restart_clears_combo ... ok
-test_draw_changes_color_in_air_and_restores_it_on_ground ... ok
+----------------------------------------------------------------------
+Ran 12 tests in 2.166s
 
-Ran 13 tests in 0.195s
 OK

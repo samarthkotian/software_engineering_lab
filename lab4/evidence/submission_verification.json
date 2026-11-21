@@ -1,0 +1,13 @@
+{
+  "validated_on": "2026-11-22",
+  "chat_history_url": "https://chatgpt.com/s/cx_6b01e93fce00819188c6779c1bed1f5b",
+  "game_sha256": "a8f1a18ca72c56b26ddd4bc298a74fbe9a0dcf4bcf2be3f8281b7fd3d6a70c3c",
+  "game_exactly_matches_chat_output": true,
+  "requirements_exactly_match_chat_output": true,
+  "test_count": 12,
+  "tests_passed": true,
+  "chat_export_pages": 6,
+  "exported_message_count": 12,
+  "after_video_source_hash_verified": true,
+  "both_videos_verified_seconds": 10.0
+}

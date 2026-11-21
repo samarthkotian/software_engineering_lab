@@ -66,6 +66,7 @@ def record(version, frames_only=False):
     surface = pygame.display.set_mode((module.WIDTH, module.HEIGHT + 80))
     game_surface = pygame.Surface((module.WIDTH, module.HEIGHT))
     label_font = pygame.font.Font(None, 24)
+    clock = pygame.time.Clock()
     (ROOT / "videos").mkdir(exist_ok=True)
     events = []
     snapshots = []
@@ -105,17 +106,20 @@ def record(version, frames_only=False):
                 title = f"{version.upper()} | Actual Pygame frames | Automated jump inputs | {frame / 60:04.1f}s / 10.0s"
                 note = ("Supplied code: single jump, no tint or clear feedback; best-score comparison already correct."
                         if version == "before" else
-                        "Completed: blue airborne tint, double jump, clear popup + combo, persistent best score.")
+                        "Completed: blue airborne tint, double jump, timed clear messages + combo, persistent best.")
                 surface.blit(label_font.render(title, True, (255, 255, 255)), (18, module.HEIGHT + 13))
                 surface.blit(label_font.render(note, True, (210, 224, 240)), (18, module.HEIGHT + 44))
                 writer.append_data(pygame.surfarray.array3d(surface).transpose(1, 0, 2))
                 if frame in (20, 599) or any(frame == n for n, _ in snapshots):
                     pygame.image.save(surface, ROOT / "evidence" / f"{version}_{frame:03d}.png")
+                # Use real time for the game's 1,200 ms notification expiry.
+                clock.tick(module.FPS)
         persisted = module.load_high_score()
         reloaded = module.Game().high_score
         metadata = {"version": version, "source_sha256": hashlib.sha256(source.read_bytes()).hexdigest(),
                     "frames": 600, "fps": 60, "seconds": 10, "size": [900, 480],
                     "input_method": "automated calls to Game.start_or_jump; no gameplay state injection",
+                    "timing": "real-time pygame clock capped at 60 fps",
                     "initial_best": 0, "final_score": game.score // 10, "final_best": game.high_score,
                     "saved_best": persisted, "reloaded_best": reloaded, "events": events}
         (ROOT / "evidence" / f"{version}_recording.json").write_text(json.dumps(metadata, indent=2), encoding="utf-8")

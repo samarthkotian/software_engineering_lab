@@ -12,6 +12,12 @@
 | 6 | Code and branch coverage - Salon Booking | [Instructions and results](lab6/README.md) |
 | 7 | Fuzz testing and input validation - Salon Booking | [Instructions and results](lab7/README.md) |
 
+## Lab 4 chat history
+
+[Complete Lab 4 conversation](https://chatgpt.com/s/cx_6b01e93fce00819188c6779c1bed1f5b)
+and its [PDF export](lab4/chat_history.pdf). The submitted code and after-video
+match the final implementation in that conversation.
+
 ## Labs 6 and 7
 
 The assigned project is

@@ -1,6 +1,6 @@
 {
   "version": "after",
-  "source_sha256": "e3e631cedf8cff61ca6af88a3ad3dcb140b828a86f72ecc354aa5198a11ffa3f",
+  "source_sha256": "a8f1a18ca72c56b26ddd4bc298a74fbe9a0dcf4bcf2be3f8281b7fd3d6a70c3c",
   "frames": 600,
   "fps": 60,
   "seconds": 10,
@@ -9,6 +9,7 @@
     480
   ],
   "input_method": "automated calls to Game.start_or_jump; no gameplay state injection",
+  "timing": "real-time pygame clock capped at 60 fps",
   "initial_best": 0,
   "final_score": 51,
   "final_best": 51,
