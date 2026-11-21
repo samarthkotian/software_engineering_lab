@@ -81,7 +81,7 @@ def make6():
     short='\n'.join(run.splitlines()[:9]+run.splitlines()[-4:])
     branch=evidence(folder,'branch_coverage','Lab 6 - final branch coverage',short+'\n'+log(folder,'final_branch_report'))
     story=[title('Lab 6: Code and Branch Coverage'),para('Salon Booking | Samarth Kotian | PES1UG24CS406 | Section 5G'),
-        para('Completed 21 November 2026'),Spacer(1,15),h('Objective and source'),
+        Spacer(1,15),h('Objective and source'),
         para('Measure baseline coverage, then add independent tests to achieve at least 90% line and branch coverage. The assigned Lab 6 application is unchanged.'),
         para('Assigned source: https://github.com/SETAPESU26/L6_L7_42_salon_booking'),
         h('Measured results'),
@@ -97,6 +97,13 @@ def make6():
     story.extend([PageBreak(),h('Final branch coverage evidence')])
     shot(story,branch)
     story.extend([h('Reproduce'),Preformatted('python -m pip install pytest coverage\npython -m coverage run --source=salon_booking -m pytest CodeCoverageTest_salon_booking.py\npython -m coverage report -m\npython -m coverage run --branch --source=salon_booking -m pytest BranchCoverageTest_salon_booking.py\npython -m coverage report -m',styles['Code'])])
+    for label, filename in [
+        ('Appendix A: Code coverage Python test file', 'CodeCoverageTest_salon_booking.py'),
+        ('Appendix B: Branch coverage Python test file', 'BranchCoverageTest_salon_booking.py'),
+    ]:
+        story.extend([PageBreak(), h(label), para(filename), Spacer(1,10),
+                      Preformatted((folder/filename).read_text(encoding='utf-8'),
+                                   styles['Code'], maxLineLength=108)])
     output=folder/'output/pdf'
     output.mkdir(parents=True,exist_ok=True)
     SimpleDocTemplate(str(output/'Lab6_PES1UG24CS406_Coverage.pdf'),pagesize=A4,rightMargin=42,leftMargin=42,topMargin=40,bottomMargin=42).build(story,onFirstPage=footer,onLaterPages=footer)
@@ -117,7 +124,7 @@ def make7():
     passed=log(folder,'after_fuzz').splitlines()
     excerpt='\n'.join(passed[:18])+ '\n\n'+ '\n'.join(passed[-5:])
     final=evidence(folder,'after_fuzz','Lab 7 - passing fuzz tests (excerpt)',excerpt)
-    story=[title('Lab 7: Fuzz Testing and Input Validation'),para('Salon Booking | Samarth Kotian | PES1UG24CS406 | Section 5G'),para('Completed 21 November 2026'),Spacer(1,15),
+    story=[title('Lab 7: Fuzz Testing and Input Validation'),para('Salon Booking | Samarth Kotian | PES1UG24CS406 | Section 5G'),Spacer(1,15),
         h('Objective and method'),para('Complete Hypothesis tests for parse_booking, duration_average and payable_bill, record failures against the original program, repair validation, and run exactly the same test suite against the fixed program. The supplied file is named salon_booking.py; test_processor.py follows the handout naming, and test_salon_booking.py is a compatibility entry point.'),
         para('Assigned source: https://github.com/SETAPESU26/L6_L7_42_salon_booking'),
         h('Measured results'),para('Original: 38 failed, 4 passed. Fixed: 42 passed. Six Hypothesis properties each completed 300 passing examples (1,800 generated examples in the final run), alongside 35 invalid-input regression cases and one documented-example test. Tests use deterministic generation, no example database, and no deadline to make replay stable.'),
@@ -133,7 +140,18 @@ def make7():
     story.extend([PageBreak(),h('4. Fuzz tests after fixes')]);shot(story,final)
     story.extend([h('Reproduce'),Preformatted('python -m pip install pytest hypothesis\npython salon_booking.py\npython -m pytest test_processor.py -v --hypothesis-show-statistics',styles['Code']),para('The original application and incomplete starter test are retained in original/. To reproduce baseline failures, run the completed test_processor.py against original/salon_booking.py in an isolated folder. Do not run the incomplete starter test as a valid test suite.')])
     story.extend([
-        PageBreak(), h('5. Reflection'),
+        PageBreak(), h('5. Observations'),
+        Paragraph('Original application', styles['Heading2']),
+        para('Valid inputs produced the expected booking, average and bill. Malformed input exposed missing validation: a blank booking caused a ValueError, while None caused AttributeError because the functions called split without checking the input type. The same completed suite recorded 38 failed tests and 4 passing tests before the repair.'),
+        Paragraph('Inputs uncovered by testing', styles['Heading2']),
+        para('Hypothesis reduced failures to small reproducible inputs such as empty text and None. Explicit regression cases additionally checked missing or repeated separators, empty CSV elements, unknown services, negative numbers, NaN, infinity, oversized integer strings and bill overflow. These cases showed that accepting numeric conversion alone was insufficient to validate a booking or bill.'),
+        Paragraph('Fixed application', styles['Heading2']),
+        para('After adding validation, all 42 tests passed. Each of the six Hypothesis properties completed 300 passing examples, for 1,800 generated passing examples in total. Invalid helper input returned None, and the interactive application printed a validation message and continued to the next prompt.'),
+        Paragraph('Valid behavior retained', styles['Heading2']),
+        para('haircut:45 still returned (Haircut, 45.0); 30,45,60 still averaged to 45; and 800|100 still produced a payable bill of 844.0. Separate valid-input properties checked the booking result, integer mean and billing formula, so a function that simply returned None for every input would fail the suite.'),
+        Paragraph('Inference and limitation', styles['Heading2']),
+        para('The observed failures and subsequent passing tests support the validation fixes for the tested input classes. Fuzzing does not exhaust every possible input, and the result depends on the properties and strategies specified.'),
+        PageBreak(), h('6. Reflection'),
         Paragraph('What did fuzzing discover?', styles['Heading2']),
         para('The original functions assumed their arguments were well-formed strings. Hypothesis shrank the failures to empty text and None: empty text causes unpacking or conversion errors, while None has no split method. Targeted regression inputs then exposed accepted negative values, unknown services, non-finite floats, malformed CSV fields and overflow. Generated failures and manually chosen regression cases are distinguished in the saved test output.'),
         Paragraph('How did the repair address these bugs?', styles['Heading2']),
