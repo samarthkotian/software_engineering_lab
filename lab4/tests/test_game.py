@@ -16,7 +16,7 @@ import game
 DEFAULT_SCORE_PATH = game.HIGH_SCORE_FILE
 
 
-class HighScoreTests(unittest.TestCase):
+class GameTestCase(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         pygame.init()
@@ -45,6 +45,7 @@ class HighScoreTests(unittest.TestCase):
         self.assertEqual(run.state, "lose")
         return run
 
+class HighScoreTests(GameTestCase):
     def test_new_record_is_saved_and_loaded_by_new_game(self):
         run = self.collide(12, 5)
         self.assertEqual(run.high_score, 12)
@@ -72,6 +73,42 @@ class HighScoreTests(unittest.TestCase):
         with patch.object(game, "HIGH_SCORE_FILE", Path(self.temp.name) / "absent" / "best.txt"):
             game.save_high_score(5)
             self.assertEqual(game.load_high_score(), 0)
+
+
+class ObstacleFeedbackTests(GameTestCase):
+    def test_pass_event_counts_once_and_popup_survives_obstacle_removal(self):
+        run = game.Game()
+        run.state = "play"
+        obstacle = game.Obstacle(0, game.GROUND_Y, run.speed)
+        obstacle.rect.right = run.dino.rect.left + 5
+        run.obstacles = [obstacle]
+        with patch.object(game, "on_obstacle_passed", wraps=game.on_obstacle_passed) as callback:
+            run.update()
+            run.update()
+            callback.assert_called_once_with(obstacle, 0)
+        self.assertEqual(run.combo, 1)
+        self.assertEqual(len(run.popups), 1)
+        obstacle.rect.right = 0
+        run.update()
+        self.assertEqual(run.obstacles, [])
+        self.assertEqual(len(run.popups), 1)
+        run.draw(pygame.Surface((game.WIDTH, game.HEIGHT)))
+
+    def test_popups_expire_and_restart_clears_combo(self):
+        run = game.Game()
+        run.state = "play"
+        run.combo = 3
+        run.popups = [{"text": "+1 CLEAR", "x": 80, "y": 240, "frames": 1}]
+        run.update()
+        self.assertEqual(run.popups, [])
+        run.reset()
+        self.assertEqual(run.combo, 0)
+        self.assertEqual(run.popups, [])
+
+    def test_approaching_or_colliding_obstacle_is_not_counted_as_cleared(self):
+        run = self.collide(3, 0)
+        self.assertEqual(run.combo, 0)
+        self.assertEqual(run.popups, [])
 
 
 class TintTests(unittest.TestCase):

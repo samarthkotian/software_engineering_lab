@@ -17,8 +17,13 @@ def dino_tint(on_ground):
 
 
 def on_obstacle_passed(obstacle, score):
-    """Called once, the frame an obstacle finishes scrolling past the dino. Add a sound or a combo counter here."""
-    pass
+    """Prepare a floating notification when an obstacle is cleared."""
+    obstacle.popup = {
+        "text": f"+1 CLEAR (score {score})",
+        "x": obstacle.rect.right + 10,
+        "y": GROUND_Y - 95,
+        "frames": FPS,
+    }
 
 
 def max_jumps():
@@ -109,6 +114,8 @@ class Game:
         self.speed = 6
         self.spawn_timer = 0
         self.spawn_interval = 90
+        self.combo = 0
+        self.popups = []
         self.state = "wait"
 
     def start_or_jump(self):
@@ -122,6 +129,10 @@ class Game:
     def update(self):
         if self.state != "play":
             return
+        for popup in self.popups:
+            popup["frames"] -= 1
+            popup["y"] -= 0.6
+        self.popups = [p for p in self.popups if p["frames"] > 0]
         self.dino.update(GROUND_Y)
         self.spawn_timer += 1
         if self.spawn_timer >= self.spawn_interval:
@@ -135,6 +146,8 @@ class Game:
             if not obs.passed and obs.rect.right < self.dino.rect.left:
                 obs.passed = True
                 on_obstacle_passed(obs, self.score // 10)
+                self.combo += 1
+                self.popups.append(obs.popup)
             if obs.rect.colliderect(self.dino.rect):
                 hit = True
         self.obstacles = [o for o in self.obstacles if not o.is_off_screen()]
@@ -157,6 +170,12 @@ class Game:
         self.dino.draw(screen)
         for obs in self.obstacles:
             obs.draw(screen)
+        for popup in self.popups:
+            text = self.font.render(popup["text"], True, (25, 110, 70))
+            screen.blit(text, (popup["x"], int(popup["y"])))
+
+        combo_surf = self.font.render(f"Combo: {self.combo} cleared", True, (25, 110, 70))
+        screen.blit(combo_surf, (20, 20))
 
         score_surf = self.font.render(f"Score: {self.score // 10}   Best: {self.high_score}", True, (50, 50, 50))
         screen.blit(score_surf, (WIDTH - 260, 20))
