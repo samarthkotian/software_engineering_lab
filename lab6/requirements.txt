@@ -1,5 +1,2 @@
-pytest
-coverage
-hypothesis
-reportlab
-pymupdf
+pytest==9.2.0
+coverage==7.17.4
