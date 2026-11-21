@@ -1,0 +1,4 @@
+$ python -m coverage html -d reports/htmlcov
+Wrote HTML report to reports/htmlcov\index.html
+
+Exit code: 0

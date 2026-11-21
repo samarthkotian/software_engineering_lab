@@ -1,0 +1,15 @@
+$ python -m coverage run --source=salon_booking -m pytest test_salon_booking.py -v
+============================= test session starts =============================
+platform win32 -- Python 3.12.14, pytest-9.2.0, pluggy-1.7.0 -- C:\Users\samar\OneDrive\Desktop\pes\pessem5\software engineering\lab\.venv-lab67\Scripts\python.exe
+cachedir: .pytest_cache
+hypothesis profile 'default'
+rootdir: C:\Users\samar\OneDrive\Desktop\pes\pessem5\software engineering\lab\L6_L7_42_salon_booking\Lab 6
+plugins: hypothesis-6.170.17
+collecting ... collected 2 items
+
+test_salon_booking.py::test_within_included_time PASSED                  [ 50%]
+test_salon_booking.py::test_can_book PASSED                              [100%]
+
+============================== 2 passed in 0.49s ==============================
+
+Exit code: 0

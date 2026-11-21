@@ -1,0 +1,4 @@
+$ python -m coverage json -o reports/branch_coverage.json
+Wrote JSON report to reports/branch_coverage.json
+
+Exit code: 0

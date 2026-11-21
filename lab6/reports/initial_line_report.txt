@@ -1,0 +1,8 @@
+$ python -m coverage report -m
+Name               Stmts   Miss  Cover   Missing
+------------------------------------------------
+salon_booking.py      37     23    38%   6, 8, 11, 15-23, 28, 30, 35-45
+------------------------------------------------
+TOTAL                 37     23    38%
+
+Exit code: 0

@@ -1,0 +1,4 @@
+$ python -m coverage json -o reports/line_coverage.json
+Wrote JSON report to reports/line_coverage.json
+
+Exit code: 0
