@@ -1,0 +1,27 @@
+$ python -m coverage run --source=salon_booking -m pytest CodeCoverageTest_salon_booking.py -v
+============================= test session starts =============================
+platform win32 -- Python 3.12.14, pytest-9.2.0, pluggy-1.7.0 -- C:\Users\samar\OneDrive\Desktop\pes\pessem5\software engineering\lab\.venv-lab67\Scripts\python.exe
+cachedir: .pytest_cache
+hypothesis profile 'default'
+rootdir: C:\Users\samar\OneDrive\Desktop\pes\pessem5\software engineering\lab\L6_L7_42_salon_booking\Lab 6
+plugins: hypothesis-6.170.17
+collecting ... collected 14 items
+
+CodeCoverageTest_salon_booking.py::test_charges[haircut-20-junior-False-0] PASSED [  7%]
+CodeCoverageTest_salon_booking.py::test_charges[haircut-45-junior-True-0] PASSED [ 14%]
+CodeCoverageTest_salon_booking.py::test_charges[haircut-50-junior-True-50] PASSED [ 21%]
+CodeCoverageTest_salon_booking.py::test_charges[colour-70-senior-False-180] PASSED [ 28%]
+CodeCoverageTest_salon_booking.py::test_charges[spa-151-senior-True-1830] PASSED [ 35%]
+CodeCoverageTest_salon_booking.py::test_charges[haircut-91-junior-False-1098] PASSED [ 42%]
+CodeCoverageTest_salon_booking.py::test_invalid[unknown-30-unknown service] PASSED [ 50%]
+CodeCoverageTest_salon_booking.py::test_invalid[haircut--1-invalid duration] PASSED [ 57%]
+CodeCoverageTest_salon_booking.py::test_bookings[2-1-True-True] PASSED   [ 64%]
+CodeCoverageTest_salon_booking.py::test_bookings[5-1-False-False] PASSED [ 71%]
+CodeCoverageTest_salon_booking.py::test_bookings[4-2-False-True] PASSED  [ 78%]
+CodeCoverageTest_salon_booking.py::test_arrival[20-True-True-open] PASSED [ 85%]
+CodeCoverageTest_salon_booking.py::test_arrival[0-False-False-late] PASSED [ 92%]
+CodeCoverageTest_salon_booking.py::test_arrival[-11-False-False-closed] PASSED [100%]
+
+============================= 14 passed in 0.59s ==============================
+
+Exit code: 0
