@@ -5,8 +5,8 @@
 | Lab | Work | Files |
 | --- | --- | --- |
 | 1 | Requirements and use cases | [lab1](lab1/) |
-| 2 | Software design | [lab2](lab2/) |
-| 3 | Architecture | [Report](lab3.pdf) |
+| 2 | Agile planning and sprint simulation | [lab2](lab2/) |
+| 3 | Architecture | [lab3](lab3/) - [Report](lab3/lab3.pdf) |
 | 4 | Dino Run testing and enhancements | [lab4](lab4/) - [Submission PDF](lab4/output/pdf/Lab4_PES1UG24CS406_Submission.pdf) |
 | 5 | Static code analysis | [lab5](lab5/) |
 | 6 | Code and branch coverage - Salon Booking | [Instructions and results](lab6/README.md) |
