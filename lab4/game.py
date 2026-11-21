@@ -12,8 +12,8 @@ HIGH_SCORE_FILE = Path(__file__).resolve().with_name("dino_highscore.txt")
 
 
 def dino_tint(on_ground):
-    """Return an (r, g, b) colour override for the dino based on whether it's on the ground, or None for the default green."""
-    pass
+    """Keep the default green on the ground; turn blue while airborne."""
+    return None if on_ground else (50, 120, 220)
 
 
 def on_obstacle_passed(obstacle, score):

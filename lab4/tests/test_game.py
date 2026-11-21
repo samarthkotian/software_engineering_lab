@@ -74,5 +74,16 @@ class HighScoreTests(unittest.TestCase):
             self.assertEqual(game.load_high_score(), 0)
 
 
+class TintTests(unittest.TestCase):
+    def test_draw_changes_color_in_air_and_restores_it_on_ground(self):
+        dino = game.Dino(80, 100)
+        surface = pygame.Surface((game.WIDTH, game.HEIGHT))
+        for on_ground, expected in ((True, dino.color), (False, (50, 120, 220)), (True, dino.color)):
+            with self.subTest(on_ground=on_ground):
+                dino.on_ground = on_ground
+                dino.draw(surface)
+                self.assertEqual(tuple(surface.get_at(dino.rect.center))[:3], expected)
+
+
 if __name__ == "__main__":
     unittest.main()
