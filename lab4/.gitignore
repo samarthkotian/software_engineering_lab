@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+.venv/
+dino_highscore.txt
+_frames/

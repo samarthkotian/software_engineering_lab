@@ -1,0 +1,75 @@
+{
+  "version": "before",
+  "source_sha256": "dbd91662dbd8d0b151828a68f300c1b1481dc73bce809e1c79645ea058020f66",
+  "frames": 600,
+  "fps": 60,
+  "seconds": 10,
+  "size": [
+    900,
+    480
+  ],
+  "input_method": "automated calls to Game.start_or_jump; no gameplay state injection",
+  "initial_best": 0,
+  "final_score": 51,
+  "final_best": 51,
+  "saved_best": 51,
+  "reloaded_best": 51,
+  "events": [
+    {
+      "frame": 0,
+      "event": "jump key",
+      "jumps": 1
+    },
+    {
+      "frame": 14,
+      "event": "jump key",
+      "jumps": 1
+    },
+    {
+      "frame": 201,
+      "event": "jump key",
+      "jumps": 1
+    },
+    {
+      "frame": 230,
+      "event": "obstacle cleared",
+      "score": 23
+    },
+    {
+      "frame": 262,
+      "event": "jump key",
+      "jumps": 1
+    },
+    {
+      "frame": 292,
+      "event": "obstacle cleared",
+      "score": 29
+    },
+    {
+      "frame": 347,
+      "event": "jump key",
+      "jumps": 1
+    },
+    {
+      "frame": 376,
+      "event": "obstacle cleared",
+      "score": 37
+    },
+    {
+      "frame": 406,
+      "event": "jump key",
+      "jumps": 1
+    },
+    {
+      "frame": 435,
+      "event": "obstacle cleared",
+      "score": 43
+    },
+    {
+      "frame": 514,
+      "event": "lose",
+      "score": 51,
+      "best": 51
+    }
+  ]
+}
