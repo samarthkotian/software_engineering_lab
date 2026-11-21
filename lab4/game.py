@@ -1,4 +1,5 @@
 import random
+from pathlib import Path
 import pygame
 
 WIDTH, HEIGHT = 900, 400
@@ -7,7 +8,7 @@ FPS = 60
 BG_COLOR = (245, 245, 245)
 GROUND_COLOR = (80, 80, 80)
 GRAVITY, JUMP_FORCE = 0.6, -14
-HIGH_SCORE_FILE = "dino_highscore.txt"
+HIGH_SCORE_FILE = Path(__file__).resolve().with_name("dino_highscore.txt")
 
 
 def dino_tint(on_ground):
@@ -27,15 +28,15 @@ def max_jumps():
 
 def load_high_score():
     try:
-        with open(HIGH_SCORE_FILE) as f:
-            return int(f.read().strip())
+        with open(HIGH_SCORE_FILE, encoding="utf-8") as f:
+            return max(0, int(f.read().strip()))
     except (OSError, ValueError):
         return 0
 
 
 def save_high_score(value):
     try:
-        with open(HIGH_SCORE_FILE, "w") as f:
+        with open(HIGH_SCORE_FILE, "w", encoding="utf-8") as f:
             f.write(str(value))
     except OSError:
         pass
@@ -141,7 +142,7 @@ class Game:
         if hit:
             self.state = "lose"
             current = self.score // 10
-            if self.high_score < current:
+            if current > self.high_score:
                 self.high_score = current
                 save_high_score(self.high_score)
             return
