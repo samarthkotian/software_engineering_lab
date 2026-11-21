@@ -3,6 +3,10 @@
 This folder contains the completed Pygame Dino Run lab, its before/after gameplay
 recordings, an exported chat PDF, regression checks, and the original supplied code.
 
+**Submission PDF:** [Links and feature/bug-fix snippets](output/pdf/Lab4_PES1UG24CS406_Submission.pdf).
+It contains the assigned repository link, before/after video links, public chat
+history link, and snippets from the submitted code.
+
 ## Chat history
 
 [Complete chat history](https://chatgpt.com/s/cx_6b01e93fce00819188c6779c1bed1f5b)
