@@ -33,15 +33,15 @@ def max_jumps():
 
 def load_high_score():
     try:
-        with open(HIGH_SCORE_FILE, encoding="utf-8") as f:
-            return max(0, int(f.read().strip()))
+        with open(HIGH_SCORE_FILE) as f:
+            return int(f.read().strip())
     except (OSError, ValueError):
         return 0
 
 
 def save_high_score(value):
     try:
-        with open(HIGH_SCORE_FILE, "w", encoding="utf-8") as f:
+        with open(HIGH_SCORE_FILE, "w") as f:
             f.write(str(value))
     except OSError:
         pass
@@ -155,7 +155,7 @@ class Game:
         if hit:
             self.state = "lose"
             current = self.score // 10
-            if current > self.high_score:
+            if self.high_score < current:
                 self.high_score = current
                 save_high_score(self.high_score)
             return
